@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" integrity="sha512-1ycn6IcaQQ40/MKBW2W4Rhis/DbILU74C1vSrLJxCq57o941Ym01SwNsOMqvEBFlcgUa6xLiPY/NS5R+E6ztJQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="style.css">
+    <title>Area Selection Tool</title>
+</head>
+<body data-theme="light">
+    <div class="container" id="main"></div>
+    <button class="btn tooltip" id="refresh"><i class="fas fa-redo"></i><span class="tooltiptext">Clear areas</span></button>
+    <button class="btn tooltip" id="save"><i class="fas fa-save"></i><span class="tooltiptext">Save</span></button>
+    <button class="btn tooltip" id="restore"><i class="fas fa-file-import"></i><span class="tooltiptext">Restore</span></button>
+    <button class="btn tooltip" id="export"><i class="fas fa-code"></i><span class="tooltiptext">Export JSON</span></button>
+    <button class="btn tooltip" id="mode"><i class="fas fa-sun"></i><span class="tooltiptext">Color mode</span></button>
+    <button class="btn tooltip" id="upload"><i class="fas fa-file-upload"></i><span class="tooltiptext">Change background</span></button>
+    <input type="file" id="file" accept="image/*" style="display: none;">
+    <div class="sidebar">
+        <button class="btn" id="add"><i class="fas fa-plus"></i></button>
+        <div id="arList"></div>
+    </div>
+    <div id="notification">
+        <span class="message"></span>
+        <span class="triangle"></span>
+    </div>
+    <footer> 
+        <small>
+            © Copyright <span id="year">2022</span>, <a href="https://github.com/AlmostDeadDude" target="_blank" rel="noopener noreferrer">Ivan Shiller</a> 
+        </small> 
+    </footer>
+    <script src="script.js"></script>
+</body>
+</html>

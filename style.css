@@ -1,0 +1,424 @@
+@import url("https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap");
+
+/* save colors as css variables */
+[data-theme="light"] {
+  --bg-color: #f7ffff;
+  --main-color: #353435;
+  --main-alpha-color: #3534354d;
+  --main-low-alpha-color: #3534351a;
+  --select-color: #99f74a;
+  --select-alpha-color: #98f74a4c;
+  --extra-color: #f52e45;
+  --link-color: #402b53;
+}
+
+[data-theme="dark"] {
+  --bg-color: #353435;
+  --main-color: #f7ffff;
+  --main-alpha-color: #f7ffff4d;
+  --main-low-alpha-color: #99f74a1a;
+  --select-color: #f7ffff4d;
+  --select-alpha-color: #98f74a4c;
+  --extra-color: #f52e45;
+  --link-color: #b76ff5;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  font-family: "Roboto", sans-serif;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  overflow: hidden;
+  margin: 0;
+  user-select: none;
+  background-color: var(--bg-color);
+}
+
+.container {
+  width: 100%;
+  height: 100%;
+  background-image: url("");
+  background-size: contain;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+.sidebar {
+  position: fixed;
+  top: 0;
+  right: 0;
+  width: 100px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin-top: 10px;
+  margin-right: 10px;
+}
+
+#arList {
+  width: 100%;
+}
+
+.entry {
+  width: 100%;
+  height: 30px;
+  border-radius: 10px;
+  margin-top: 5px;
+  text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  position: relative;
+  box-shadow: 0 0 3px var(--main-color);
+  padding-left: 10px;
+  overflow: hidden;
+  background-color: var(--bg-color);
+}
+
+.name {
+  cursor: pointer;
+  color: var(--main-color);
+  font: inherit;
+  font-weight: 500;
+  background-color: transparent;
+  outline: none;
+  border: none;
+  width: 70px;
+}
+
+.delete {
+  position: absolute;
+  top: 0;
+  right: 0;
+  background-color: transparent;
+  color: var(--extra-color);
+  font-weight: bold;
+  border: none;
+  cursor: pointer;
+}
+
+.delete:hover {
+  background-color: var(--extra-color);
+  color: var(--bg-color);
+}
+
+#add {
+  margin: 5px 0;
+}
+
+#refresh {
+  position: absolute;
+  top: 15px;
+  left: 35px;
+}
+
+#save {
+  position: absolute;
+  top: 15px;
+  left: 95px;
+}
+
+#restore {
+  position: absolute;
+  top: 15px;
+  left: 155px;
+}
+
+#export {
+  position: absolute;
+  top: 15px;
+  left: 215px;
+}
+
+#mode {
+  position: absolute;
+  top: 15px;
+  left: 275px;
+}
+
+#upload {
+  position: absolute;
+  top: 15px;
+  left: 335px;
+}
+
+.btn {
+  border-radius: 50%;
+  width: 50px;
+  height: 50px;
+  cursor: pointer;
+  border: none;
+  outline: none;
+  font-size: 26px;
+  color: var(--main-color);
+  box-shadow: 0px 0px 3px var(--main-alpha-color);
+  background-color: transparent;
+}
+
+.btn:hover {
+  background-color: var(--main-alpha-color);
+}
+
+.btn:active {
+  font-size: 30px;
+  background-color: var(--main-alpha-color);
+}
+
+.area {
+  background-color: var(--main-alpha-color);
+  border: 2px solid var(--main-color);
+  position: absolute;
+  cursor: move;
+}
+
+.area.active {
+  background-color: var(--select-alpha-color);
+  border: 2px solid var(--select-color);
+  z-index: 1000;
+}
+
+.area .areaControls {
+  text-align: center;
+}
+
+.area .areaControls .areaTitle {
+  position: absolute;
+  top: -25px;
+  left: 0;
+  color: var(--main-color);
+  font-weight: normal;
+  cursor: help;
+}
+
+.area.active .areaControls .areaTitle {
+  color: var(--extra-color);
+  font-weight: bold;
+}
+
+.area .areaControls div {
+  position: absolute;
+  width: 6px;
+  height: 6px;
+  background-color: var(--bg-color);
+  border: var(--main-color) solid 1px;
+  display: none;
+  opacity: 0.9;
+  z-index: 1;
+}
+
+.area .areaControls .up {
+  top: 0;
+  left: 50%;
+  transform: translate(-50%, -5px);
+  display: block;
+  cursor: ns-resize;
+}
+
+.area .areaControls .right {
+  top: 50%;
+  left: 100%;
+  transform: translate(-3px, -50%);
+  display: block;
+  cursor: ew-resize;
+}
+
+.area .areaControls .down {
+  top: 100%;
+  left: 50%;
+  transform: translate(-50%, -3px);
+  display: block;
+  cursor: ns-resize;
+}
+
+.area .areaControls .left {
+  top: 50%;
+  left: 0%;
+  transform: translate(-5px, -50%);
+  display: block;
+  cursor: ew-resize;
+}
+
+.area .areaControls .up-right {
+  top: 0%;
+  left: 100%;
+  transform: translate(-3px, -5px);
+  display: block;
+  cursor: nesw-resize;
+}
+
+.area .areaControls .down-right {
+  top: 100%;
+  left: 100%;
+  transform: translate(-3px, -3px);
+  display: block;
+  cursor: nwse-resize;
+}
+
+.area .areaControls .up-left {
+  top: 0%;
+  left: 0%;
+  transform: translate(-5px, -5px);
+  display: block;
+  cursor: nwse-resize;
+}
+
+.area .areaControls .down-left {
+  top: 100%;
+  left: 0%;
+  transform: translate(-5px, -3px);
+  display: block;
+  cursor: nesw-resize;
+}
+
+.yellowBG {
+  background-color: var(--select-color);
+}
+
+.beingMoved {
+  z-index: 1000;
+}
+
+#notification {
+  position: fixed;
+  bottom: -150px;
+  right: 0;
+  background-color: var(--link-color);
+  color: var(--bg-color);
+  font-size: 1.5rem;
+  border-radius: 15px;
+  padding: 10px 20px;
+  margin: 20px;
+  transition: transform 0.5s ease-in-out;
+}
+
+#notification.show {
+  transform: translateY(-150px);
+}
+
+#notification .triangle {
+  position: absolute;
+  bottom: -15px;
+  left: 80%;
+  transform: translateX(-50%);
+  width: 0;
+  height: 0;
+  border-left: 15px solid transparent;
+  border-right: 15px solid transparent;
+  border-top: 15px solid var(--link-color);
+}
+
+footer {
+  position: fixed;
+  bottom: 10px;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+footer a {
+  color: var(--link-color);
+}
+
+/* Tooltip container */
+.tooltip {
+  position: relative;
+  display: inline-block;
+}
+
+.tooltip .tooltiptext {
+  visibility: hidden;
+  width: 150px;
+  background-color: var(--main-low-alpha-color);
+  color: var(--main-color);
+  text-align: center;
+  padding: 5px 0;
+  border-radius: 10px;
+  font-weight: 400;
+  border: 1px dashed var(--main-color);
+  font-size: 14px;
+
+  /* Position the tooltip text */
+  position: absolute;
+  z-index: 1;
+  bottom: 125%;
+  left: 50%;
+  margin-left: -75px;
+
+  /* Fade in tooltip */
+  opacity: 0;
+  transition: appear 0.8s;
+}
+
+.btn.tooltip .tooltiptext {
+  width: 100px;
+  margin-left: -50px;
+  top: 125%;
+  bottom: unset;
+  border-style: outset;
+  background-color: var(--main-color);
+  color: var(--bg-color);
+}
+
+/* Tooltip arrow */
+.tooltip .tooltiptext::after {
+  content: "";
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  margin-left: -5px;
+  border-width: 5px;
+  border-style: solid;
+  border-color: var(--main-color) transparent transparent transparent;
+}
+
+.btn.tooltip .tooltiptext::after {
+  top: unset;
+  bottom: 100%;
+  border-color: transparent transparent var(--main-color) transparent;
+}
+
+/* Show the tooltip text when you mouse over the tooltip container */
+.tooltip:hover .tooltiptext {
+  visibility: visible;
+  opacity: 1;
+  transition-property: opacity;
+  transition-delay: 0.5s;
+}
+
+.tooltip .tooltiptext .tooltiplist {
+  list-style-type: none;
+  padding: 0 10px;
+  text-align: left;
+  margin: 0;
+}
+
+.W,
+.H {
+  font-weight: bold;
+}
+
+.listoption i {
+  font-size: 10px;
+}
+
+.float-val {
+  float: right;
+}
+
+@keyframes appear {
+  0% {
+    opacity: 0;
+  }
+  50% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
